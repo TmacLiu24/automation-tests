@@ -57,8 +57,9 @@ def login():
             page.wait_for_url(lambda url: "#/Login" not in url, timeout=10000)
             print(f"登录成功，当前URL: {page.url}")
 
-            # 验证登录成功 - 检查是否包含首页元素
-            page.wait_for_selector(".el-container, .el-header, .el-main", timeout=10000)
+            # 验证登录成功 - 等待页面加载完成
+            page.wait_for_load_state("domcontentloaded")
+            human_delay(page, 2.0, 3.0)  # 等待首页渲染
             print("[OK] 已进入WFM首页")
 
             # ===== 2. 点击任务项 =====
