@@ -151,5 +151,5 @@ def login():
 
 
 if __name__ == "__main__":
-    # 调用重命名后的函数
-    test_login()
+    # 直接运行脚本
+    login()
