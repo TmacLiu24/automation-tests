@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import io
 from playwright.sync_api import sync_playwright
 from pages.login_page_sync import LoginPage
-from pages.wfm_home_page import WFMHomePage
+#from pages.wfm_home_page import WFMHomePage
 
 # Fix encoding for Windows
 if sys.platform == "win32":
