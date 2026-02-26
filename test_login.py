@@ -63,8 +63,14 @@ def  test_login():
 
             # ===== 2. 点击任务项 =====
             print("[5/5] 点击任务项目...")
-            task_item = page.get_by_text("【测试部门-2月第2周-项目汇总】功能优化点测试")
-            task_item.click()
+            # 使用 class="td-hover" 和 title 属性定位
+            task_item = page.locator('.td-hover[title*="【测试部门-2月第2周-项目汇总】功能优化点测试"]')
+            # 如果找不到，尝试使用 get_by_text
+            if not task_item.count():
+                task_item = page.get_by_text("【测试部门-2月第2周-项目汇总】功能优化点测试")
+            task_item.first.scroll_into_view_if_needed()
+            human_delay(page, 0.3, 0.8)
+            task_item.first.click()
             page.wait_for_load_state("networkidle")
             print("[OK] 已打开任务详情")
 
@@ -145,4 +151,5 @@ def  test_login():
 
 
 if __name__ == "__main__":
-    run()
+    # 调用重命名后的函数
+    test_login()
