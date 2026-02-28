@@ -21,7 +21,7 @@ def human_delay(page: Page, min_sec: float = 0.5, max_sec: float = 2.0) -> None:
     page.wait_for_timeout(int(delay * 1000))
 
 
-def login():
+def test_login():
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(viewport={"width": 1280, "height": 720})
@@ -153,4 +153,4 @@ def login():
 
 if __name__ == "__main__":
     # 直接运行脚本
-    login()
+    test_login()
