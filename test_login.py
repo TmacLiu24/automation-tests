@@ -89,10 +89,20 @@ def test_login():
             print("点击前往查看...")
             page.get_by_text("前往查看 >").click()
             page.wait_for_load_state("networkidle")
+            human_delay(page, 1.0, 2.0)
 
             # ===== 5. 点击修改任务 =====
             print("点击修改任务...")
-            page.get_by_role("button", name="修改任务").click()
+            # 等待页面加载完成
+            page.wait_for_load_state("networkidle")
+            human_delay(page, 1.0, 2.0)
+
+            # 等待按钮出现并滚动到可见区域
+            edit_btn = page.get_by_role("button", name="修改任务")
+            edit_btn.wait_for(state="visible", timeout=15000)
+            edit_btn.scroll_into_view_if_needed()
+            human_delay(page, 0.3, 0.8)
+            edit_btn.click()
             page.wait_for_load_state("networkidle")
 
             # ===== 6. 返回 =====
